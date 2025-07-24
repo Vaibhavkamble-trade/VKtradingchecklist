@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trading Pre-Trade Checklist</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    .question { margin-bottom: 10px; }
+    .result { margin-top: 20px; font-weight: bold; }
+    button { margin-right: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Trading Pre-Trade Checklist</h1>
+
+  <form id="checklistForm">
+    <div class="question">1. Are you taking this trade emotionally?
+      <input type="radio" name="q1" value="1"> +1
+      <input type="radio" name="q1" value="-1"> -1
+    </div>
+    <div class="question">2. Is there any news or an event?
+      <input type="radio" name="q2" value="1"> +1
+      <input type="radio" name="q2" value="-1"> -1
+    </div>
+    <div class="question">3. Price near key support/resistance zone?
+      <input type="radio" name="q3" value="1"> +1
+      <input type="radio" name="q3" value="-1"> -1
+    </div>
+    <div class="question">4. Market structure confirmation (HH-HL or LL-LH)?
+      <input type="radio" name="q4" value="1"> +1
+      <input type="radio" name="q4" value="-1"> -1
+    </div>
+    <div class="question">5. Candle pattern confirmation (e.g. engulfing, pin bar)?
+      <input type="radio" name="q5" value="1"> +1
+      <input type="radio" name="q5" value="-1"> -1
+    </div>
+    <div class="question">6. Trendline confirmation?
+      <input type="radio" name="q6" value="1"> +1
+      <input type="radio" name="q6" value="-1"> -1
+    </div>
+    <div class="question">7. Higher timeframe alignment?
+      <input type="radio" name="q7" value="1"> +1
+      <input type="radio" name="q7" value="-1"> -1
+    </div>
+    <div class="question">8. Risk-reward ratio > 1:2?
+      <input type="radio" name="q8" value="1"> +1
+      <input type="radio" name="q8" value="-1"> -1
+    </div>
+    <div class="question">9. SL and TP level clearly defined?
+      <input type="radio" name="q9" value="1"> +1
+      <input type="radio" name="q9" value="-1"> -1
+    </div>
+    <div class="question">10. MACD confirmation?
+      <input type="radio" name="q10" value="1"> +1
+      <input type="radio" name="q10" value="-1"> -1
+    </div>
+    <div class="question">11. Any kind of CHoCH?
+      <input type="radio" name="q11" value="1"> +1
+      <input type="radio" name="q11" value="-1"> -1
+    </div>
+    <div class="question">12. Any kind of BoS?
+      <input type="radio" name="q12" value="1"> +1
+      <input type="radio" name="q12" value="-1"> -1
+    </div>
+    <div class="question">13. Is the price in consolidation?
+      <input type="radio" name="q13" value="1"> +1
+      <input type="radio" name="q13" value="-1"> -1
+    </div>
+    <div class="question">14. SL and TP level clearly defined?
+      <input type="radio" name="q14" value="1"> +1
+      <input type="radio" name="q14" value="-1"> -1
+    </div>
+
+    <button type="button" onclick="calculate()">Calculate</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </form>
+
+  <div class="result" id="resultDisplay"></div>
+
+  <script>
+    function calculate() {
+      let total = 0;
+      let count = 0;
+      for (let i = 1; i <= 14; i++) {
+        let radios = document.getElementsByName("q" + i);
+        for (let radio of radios) {
+          if (radio.checked) {
+            total += parseInt(radio.value);
+            count++;
+          }
+        }
+      }
+      let percentage = ((total + count) / (2 * count)) * 100;
+      document.getElementById("resultDisplay").innerText =
+        "Total Score: " + total + " (" + Math.round(percentage) + "%)";
+    }
+
+    function clearForm() {
+      document.getElementById("checklistForm").reset();
+      document.getElementById("resultDisplay").innerText = "";
+    }
+  </script>
+</body>
+</html>
